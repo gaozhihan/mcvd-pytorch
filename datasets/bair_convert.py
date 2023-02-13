@@ -25,7 +25,7 @@ def get_seq(data_dir, dname):
     for f in filenames:
         k = 0
         # tf.enable_eager_execution()
-        for serialized_example in tf.python_io.tf_record_iterator(f):
+        for serialized_example in tf.compat.v1.python_io.tf_record_iterator(f):
             example = tf.train.Example()
             example.ParseFromString(serialized_example)
             image_seq = []
@@ -55,21 +55,21 @@ def make_h5_from_bair(bair_dir, split='train', out_dir='./h5_ds', vids_per_shard
         num = 256
         for i in tqdm(range(num)):
 
-            try:
-                f, k, seq = next(seq_generator)
-                # h5_maker.add_data(seq, dtype=None)
-                h5_maker.add_data(seq, dtype='uint8')
+            # try:
+            f, k, seq = next(seq_generator)
+            # h5_maker.add_data(seq, dtype=None)
+            h5_maker.add_data(seq, dtype='uint8')
 
-            except StopIteration:
-                break
-
-            except (KeyboardInterrupt, SystemExit):
-                print("Ctrl+C!!")
-                break
-
-            except:
-                e = sys.exc_info()[0]
-                print("ERROR:", e)
+            # except StopIteration:
+            #     break
+            #
+            # except (KeyboardInterrupt, SystemExit):
+            #     print("Ctrl+C!!")
+            #     break
+            #
+            # except:
+            #     e = sys.exc_info()[0]
+            #     print("ERROR:", e)
 
     h5_maker.close()
 

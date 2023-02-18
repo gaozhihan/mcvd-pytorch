@@ -1,3 +1,7 @@
+# Not work since I'm forbidden to access the link. Use the following command instead:
+# gdown --fuzzy https://drive.google.com/file/d/1d2UfHV6RhSrwdDAlCFY3GymtFPpmh_8X/view?usp=sharing
+# See detailed discussion at https://github.com/voletiv/mcvd-pytorch/issues/2
+
 TARGET_DIR=$1
 if [ -z $TARGET_DIR ]
 then
